@@ -1,0 +1,35 @@
+module.exports = global.config = {
+    i18n: {
+        welcome: {
+            en: "Welcome",
+        },
+    },
+    colors: {
+        white: "#FFFFFF",
+        black: "#000000",
+        green: "#1FD323",
+        yellow: "#FFCD00",
+        gray1: "#3F434D",
+        gray2: "#5F636D",
+        gray3: "#8C8F97",
+        gray4: "#A3A6AB",
+        gray5: "#DADBDE",
+        gray6: "#E5E8EC",
+        gray7: "#EDEFF2",
+        gray8: "#F5F6F8",
+        gray9: "#FAFAFB",
+        blue1: "#0066F5",
+        blue2: "#70ACFF",
+        blue3: "#C2DBFF",
+        blue4: "#E1EEFF",
+        blue5: "#F4F7FB",
+        orange1: "#FF3D00",
+        orange2: "#FFBEAD",
+        orange3: "#FFDED6",
+    },
+    border: {
+        small: "0.01em solid #e5e5e5",
+        medium: "0.1rem solid #000000",
+        large: "0.2em solid #000000",
+    },
+};

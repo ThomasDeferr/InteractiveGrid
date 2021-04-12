@@ -1,10 +1,11 @@
-import Resize from "./Components/InteractiveCell/Resize";
-import InteractiveGrid from "./Components/InteractiveGrid";
+import ProjectAllocationsPage from "./pages/ProjectAllocationsPage";
+import GlobalStyle from "./styles/Global";
 
 const App = () => {
   return (
     <>
-      <InteractiveGrid />
+      <GlobalStyle />
+      <ProjectAllocationsPage />
     </>
   );
 };
