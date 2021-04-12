@@ -22,7 +22,8 @@ const PillContent = styled.div`
 const PillPipe = styled.div`
   width: 0.05rem;
   height: 0.43rem;
-  background-color: ${(props) => props.color};
+  // background-color: ${(props) => props.color};
+  background-color: black;
   margin: auto 0.325rem;
 `;
 

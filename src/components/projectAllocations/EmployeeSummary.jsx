@@ -18,14 +18,15 @@ const EmployeeSummary = ({ employee, data }) => {
             freelance={employee.freelance}
           />
         </Col>
-        {data.map((item) => (
-          <Col key={item.id} className="h-100 border-left border-right">
-            <Pill
-              availableHours={item.availableHours}
-              allocatedHours={item.allocatedHours}
-            />
-          </Col>
-        ))}
+        {data &&
+          data.map((item) => (
+            <Col key={item.id} className="h-100 border-left border-right">
+              <Pill
+                availableHours={item.availableHours}
+                allocatedHours={item.allocatedHours}
+              />
+            </Col>
+          ))}
       </Row>
     </Container>
   );
