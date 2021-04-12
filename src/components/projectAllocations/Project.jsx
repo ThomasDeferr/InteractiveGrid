@@ -7,25 +7,16 @@ const cellStepValue = 8;
 
 const Project = ({ data, onChange }) => {
   const handleCellValueChange = (event, jobCode, index, value) => {
-    // console.log(
-    //   "[project]",
-    //   "jobCode",
-    //   jobCode,
-    //   "index",
-    //   index,
-    //   " value",
-    //   value
-    // );
     onChange(event, jobCode, value, index);
   };
 
   return (
     <Container fluid className="project-container">
-      <Row className="project-row">
+      <Row noGutters className="project-row">
         <Col xs="2">
           <span>{data.name}</span>
         </Col>
-        <Col>
+        <Col xs="10">
           <Allocations
             data={data.allocations}
             cellMaxValue={cellMaxValue}

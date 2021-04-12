@@ -12,7 +12,7 @@ const ProfilePicture = styled.img`
 
 const Profile = ({ name, title, location, imageURL, freelance }) => {
   return (
-    <Container fluid>
+    <Container fluid className="m-0 p-0">
       <Row noGutters className="align-items-center">
         <Col xs="auto">
           <ProfilePicture src={imageURL} />

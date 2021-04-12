@@ -111,7 +111,7 @@ const Allocations = ({ data, cellMaxValue, cellStepValue, onChange }) => {
     <Container className="allocations" fluid onMouseUp={handleMouseUp}>
       <Row className="allocations-row">
         {cellsGraphicInfo.map((cell, index) => (
-          <Col className="allocation-cell" key={index}>
+          <Col className="m-0 p-0 allocation-cell" key={index}>
             <Cell
               id={cell.id}
               value={cell.value}

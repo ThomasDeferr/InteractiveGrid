@@ -12,8 +12,6 @@ const PillWrapper = styled.div`
   justify-content: center;
   min-width: 50px;
   max-width: 70px;
-  width: 50%;
-  height: 100%;
 `;
 
 const PillContent = styled.div`

@@ -6,7 +6,7 @@ import Profile from "../ui/Profile";
 
 const EmployeeSummary = ({ employee, data }) => {
   return (
-    <Container fluid>
+    <Container fluid className="m-0 p-0 employee-summary">
       <Row noGutters className="align-items-center">
         <Col xs="3">
           <Profile
@@ -14,13 +14,13 @@ const EmployeeSummary = ({ employee, data }) => {
             name={employee.name}
             title={employee.title}
             location={employee.location}
-            profileImageURL={employee.profileImageURL}
+            imageURL={employee.profileImageURL}
             freelance={employee.freelance}
           />
         </Col>
         {data &&
           data.map((item) => (
-            <Col key={item.id} className="h-100 border-left border-right">
+            <Col key={item.id} className="border-left border-right pill-col">
               <Pill
                 availableHours={item.availableHours}
                 allocatedHours={item.allocatedHours}

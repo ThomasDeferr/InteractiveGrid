@@ -14,16 +14,21 @@ const ToggleContainer = ({ Header, children, onToggleVisibility }) => {
   };
 
   return (
-    <Container fluid className="border-top border-bottom">
+    <Container fluid className="m-0 p-0 toggle-container">
       <Row noGutters className="align-items-center">
         <Col xs="auto">
-          <Button variant="outline-*" onClick={handleToggleVisibility}>
+          <Button
+            variant="link"
+            size="sm"
+            className="m-0 p-0"
+            onClick={handleToggleVisibility}
+          >
             {hidden ? <Expand /> : <Collapse />}
           </Button>
         </Col>
         <Col>{Header}</Col>
       </Row>
-      <Row>
+      <Row noGutters>
         <Col>
           <div className={hidden ? "slide-up" : "slide-down"}>{children}</div>
         </Col>

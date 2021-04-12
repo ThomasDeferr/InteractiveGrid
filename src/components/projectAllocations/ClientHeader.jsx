@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Dotdotdot from "react-dotdotdot";
+import { Container, Row, Col } from "react-bootstrap";
 
 const ClientHeader = ({ clientName }) => {
   return (
-    <div className="w-100">
-      <Dotdotdot clamp={1}>
-        <span>{clientName}</span>
-      </Dotdotdot>
-    </div>
+    <Dotdotdot clamp={1}>
+      <span>{clientName}</span>
+    </Dotdotdot>
   );
 };
 

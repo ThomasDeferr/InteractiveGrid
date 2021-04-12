@@ -37,90 +37,57 @@ const Employee = ({ data }) => {
     index,
     value
   ) => {
-    // console.log(
-    //   "[employee]",
-    //   "clientCode",
-    //   clientCode,
-    //   "jobCode",
-    //   jobCode,
-    //   "index",
-    //   index,
-    //   " value",
-    //   value
-    // );
+    let copiedDetails = [...details];
 
-    // let copiedDetails = [...details];
+    const clientIndex = copiedDetails.findIndex(
+      (client) => client.code === clientCode
+    );
 
-    // const clientIndex = copiedDetails.findIndex(
-    //   (client) => client.code === clientCode
-    // );
+    const projectIndex = copiedDetails[clientIndex].projects.findIndex(
+      (project) => project.jobCode === Number(jobCode)
+    );
 
-    // const projectIndex = copiedDetails[clientIndex].projects.findIndex(
-    //   (project) => project.jobCode === Number(jobCode)
-    // );
+    let projects = copiedDetails[clientIndex].projects;
 
-    // let projects = copiedDetails[clientIndex].projects;
+    let allocations = projects[projectIndex].allocations;
 
-    // let allocations = projects[projectIndex].allocations;
+    allocations[index] = {
+      ...allocations[index],
+      value: value,
+    };
 
-    // console.log("projects 1", projects);
+    projects[projectIndex] = {
+      ...projects[projectIndex],
 
-    // console.log("allocations 1", allocations);
+      allocations: allocations,
+    };
 
-    // allocations[index] = {
-    //   ...allocations[index],
+    copiedDetails[clientIndex] = {
+      ...copiedDetails[clientIndex],
 
-    //   value: value,
-    // };
+      projects: projects,
+    };
 
-    // projects[projectIndex] = {
-    //   ...projects[projectIndex],
+    setDetails(copiedDetails);
 
-    //   allocations: allocations,
-    // };
+    let allocationsSummary = copiedDetails.map((client) =>
+      client.projects.map((project) => project.allocations)
+    );
 
-    // copiedDetails[clientIndex] = {
-    //   ...copiedDetails[clientIndex],
+    allocationsSummary = flattenDeep(allocationsSummary);
 
-    //   projects: projects,
-    // };
+    allocationsSummary = groupBy(allocationsSummary, "id");
 
-    // let allocationsSummary = -copiedDetails.map((client) =>
-    //   client.projects.map((project) => project.allocations)
-    // );
-
-    // console.log("allocationsSummary 1", allocationsSummary);
-
-    // allocationsSummary = flattenDeep(allocationsSummary);
-
-    // allocationsSummary = groupBy(allocationsSummary, "id");
-
-    // console.log("allocationsSummary", allocationsSummary);
-    // // setSummary("newSummary", summary);
-    // let summary = mapLodash(allocationsSummary, (allocation, id) => ({
-    //   id: id,
-    //   value: sumBy(allocation, "value"),
-    // }));
-
-    // let newSummary = [...summary];
-
-    // newSummary = summary.map((element) => ({
-    //   ...element,
-
-    //   allocatedHours: summary.find(
-    //     (e) => Number(e.id) === Number(element.weekNumber)
-    //   ).value,
-    // }));
-
-    // console.log("newSummary", newSummary);
-
-    // setSummary(...summary);
-
-    // setTest("Hola mundo!");
-    let test = [...summary];
-    test[index].allocatedHours = value;
-    console.log(test);
-    setSummary(test);
+    let updatedSummary = mapLodash(allocationsSummary, (allocation, id) => ({
+      id: id,
+      allocatedHours: sumBy(allocation, "value"),
+    }));
+    let aux = summary.map((item) => ({
+      ...item,
+      allocatedHours: updatedSummary.find((item2) => item2.id == item.id)
+        .allocatedHours,
+    }));
+    setSummary(aux);
   };
 
   return (
@@ -129,26 +96,24 @@ const Employee = ({ data }) => {
         Header={<EmployeeSummary employee={data} data={summary} />}
         onToggleVisibility={handleToggleVisibility}
       >
-        <Container fluid className="level-right-1">
-          {details &&
-            details.map((client, index) => (
-              <Client
-                key={index}
-                clientName={client.name}
-                clientCode={client.code}
-                projects={client.projects}
-                onChange={(event, clientCode, jobCode, index, value) =>
-                  handleClientAllocationsChange(
-                    event,
-                    clientCode,
-                    jobCode,
-                    index,
-                    value
-                  )
-                }
-              />
-            ))}
-        </Container>
+        {details &&
+          details.map((client, index) => (
+            <Client
+              key={index}
+              clientName={client.name}
+              clientCode={client.code}
+              projects={client.projects}
+              onChange={(event, clientCode, jobCode, index, value) =>
+                handleClientAllocationsChange(
+                  event,
+                  clientCode,
+                  jobCode,
+                  index,
+                  value
+                )
+              }
+            />
+          ))}
       </ToggleContainer>
     </>
   );
